@@ -9,9 +9,10 @@ template <class T, typename TEnum, typename std::enable_if<std::is_enum<TEnum>::
 class State
 {
 public:
-	State( TEnum name )
+	State( TEnum name, std::string nameStr = "" )
 	{
 		m_Name = name;
+		m_NameStr = nameStr;
 	}
 
 	virtual ~State() {}
@@ -19,6 +20,11 @@ public:
 	inline TEnum Name() const
 	{
 		return m_Name;
+	}
+
+	inline std::string NameStr() const
+	{
+		return m_NameStr;
 	}
 
 	virtual void Enter( T* ) = 0;
@@ -29,6 +35,7 @@ private:
 	State() {}
 
 	TEnum m_Name;
+	std::string m_NameStr;
 };
 
 /************************************************************************/
@@ -55,7 +62,7 @@ public:
 			return m_pCurrentState->Name();
 		}
 
-		return "";
+		return nullptr;
 	}
 
 	void ChangeState( State<T, TEnum>* state )

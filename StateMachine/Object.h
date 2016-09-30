@@ -12,7 +12,7 @@ class Object
 
 public:
 
-	enum STATE
+	enum STATE 
 	{
 		Enter = 0,
 		Exec,
@@ -41,8 +41,8 @@ private:
 	class ObjectStateEnter final : public State<Object, STATE>
 	{
 		public:
-			ObjectStateEnter( STATE name ) :
-				State( name )
+			ObjectStateEnter( STATE name, std::string nameStr = "" ) :
+				State( name, nameStr )
 			{
 			}
 
@@ -57,8 +57,8 @@ private:
 	class ObjectStateExec final : public State<Object, STATE>
 	{
 		public:
-			ObjectStateExec( STATE name ) :
-				State( name )
+			ObjectStateExec( STATE name, std::string nameStr = "" ) :
+				State( name, nameStr )
 			{
 			}
 
@@ -73,8 +73,8 @@ private:
 	class ObjectStateExit final : public State<Object, STATE>
 	{
 		public:
-			ObjectStateExit( STATE name ) :
-				State( name )
+			ObjectStateExit( STATE name, std::string nameStr = "" ) :
+				State( name, nameStr )
 			{
 			}
 
