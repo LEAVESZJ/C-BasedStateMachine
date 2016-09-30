@@ -25,11 +25,6 @@ public:
 
 	void Initialize();
 
-	void TEST()
-	{
-		std::cout << "owner::TEST\n";
-	};
-
 private:
 	class ObjectStateEnter final : public State<Object>
 	{

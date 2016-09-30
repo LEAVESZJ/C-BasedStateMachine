@@ -26,14 +26,11 @@ void Object::Initialize()
 	m_pStateMachine->ChangeState( m_StateVec[ STATE::Enter ] );
 }
 
-
+/************************************************************************/
+/* Object State Enter													*/
+/************************************************************************/
 void Object::ObjectStateEnter::Enter( Object* owner )
 {
-	std::cout << this->Name() + "::Enter" << std::endl;
-
-	printf( "STATE SIZE : %d\n", owner->m_StateVec.size() );
-
-	owner->TEST();
 }
 
 void Object::ObjectStateEnter::Exec( Object* owner )
@@ -42,12 +39,13 @@ void Object::ObjectStateEnter::Exec( Object* owner )
 
 void Object::ObjectStateEnter::Exit( Object* owner )
 {
-	std::cout << this->Name() + "::Exit" << std::endl;
 }
 
+/************************************************************************/
+/* Object State Exec													*/
+/************************************************************************/
 void Object::ObjectStateExec::Enter( Object* owner )
 {
-	std::cout << this->Name() + "::Enter" << std::endl;
 }
 
 void Object::ObjectStateExec::Exec( Object* owner )
@@ -56,12 +54,13 @@ void Object::ObjectStateExec::Exec( Object* owner )
 
 void Object::ObjectStateExec::Exit( Object* owner )
 {
-	std::cout << this->Name() + "::Exit" << std::endl;
 }
 
+/************************************************************************/
+/* Object State Exit													*/
+/************************************************************************/
 void Object::ObjectStateExit::Enter( Object* owner )
 {
-	std::cout << this->Name() + "::Enter" << std::endl;
 }
 
 void Object::ObjectStateExit::Exec( Object* owner )
@@ -70,5 +69,4 @@ void Object::ObjectStateExit::Exec( Object* owner )
 
 void Object::ObjectStateExit::Exit( Object* owner )
 {
-	std::cout << this->Name() + "::Exit" << std::endl;
 }
