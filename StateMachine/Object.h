@@ -9,7 +9,6 @@
 /************************************************************************/
 class Object
 {
-	typedef typename State<Object> StateObject;
 
 public:
 
@@ -29,7 +28,9 @@ private:
 
 	void ChangeState( STATE state );
 
-	StateMachine<Object>*	  m_pStateMachine;
+	StateMachine<Object, STATE>* m_pStateMachine;
+
+	typedef typename State<Object, STATE> StateObject;
 	std::vector<StateObject*> m_StateVec;
 
 private:
@@ -37,10 +38,10 @@ private:
 	/************************************************************************/
 	/* Object State Enter                                                   */
 	/************************************************************************/
-	class ObjectStateEnter final : public State<Object>
+	class ObjectStateEnter final : public State<Object, STATE>
 	{
 		public:
-			ObjectStateEnter( std::string name ) :
+			ObjectStateEnter( STATE name ) :
 				State( name )
 			{
 			}
@@ -53,10 +54,10 @@ private:
 	/************************************************************************/
 	/* Object State Exec                                                    */
 	/************************************************************************/
-	class ObjectStateExec final : public State<Object>
+	class ObjectStateExec final : public State<Object, STATE>
 	{
 		public:
-			ObjectStateExec( std::string name ) :
+			ObjectStateExec( STATE name ) :
 				State( name )
 			{
 			}
@@ -69,10 +70,10 @@ private:
 	/************************************************************************/
 	/* Object State Exit                                                    */
 	/************************************************************************/
-	class ObjectStateExit final : public State<Object>
+	class ObjectStateExit final : public State<Object, STATE>
 	{
 		public:
-			ObjectStateExit( std::string name ) :
+			ObjectStateExit( STATE name ) :
 				State( name )
 			{
 			}

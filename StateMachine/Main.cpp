@@ -1,4 +1,3 @@
-#include "StateMachine.h"
 #include "Object.h"
 
 void main()

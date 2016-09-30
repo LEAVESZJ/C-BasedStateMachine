@@ -17,11 +17,11 @@ Object::~Object()
 
 void Object::Initialize()
 {
-	m_pStateMachine = new StateMachine<Object>( this );
+	m_pStateMachine = new StateMachine<Object, STATE>( this );
 
-	m_StateVec.push_back( dynamic_cast<StateObject*>( new ObjectStateEnter( "STATE::Enter" ) ) );
-	m_StateVec.push_back( dynamic_cast<StateObject*>( new ObjectStateExec( "STATE::Exec" ) ) );
-	m_StateVec.push_back( dynamic_cast<StateObject*>( new ObjectStateExit( "STATE::Exit" ) ) );
+	m_StateVec.push_back( dynamic_cast<StateObject*>( new ObjectStateEnter( STATE::Enter ) ) );
+	m_StateVec.push_back( dynamic_cast<StateObject*>( new ObjectStateExec( STATE::Exec ) ) );
+	m_StateVec.push_back( dynamic_cast<StateObject*>( new ObjectStateExit( STATE::Exit ) ) );
 
 	this->ChangeState( STATE::Enter );
 }

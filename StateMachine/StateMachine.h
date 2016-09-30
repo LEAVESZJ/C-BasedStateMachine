@@ -5,18 +5,18 @@
 /************************************************************************/
 /* State                                                                */
 /************************************************************************/
-template <class T>
+template <class T, typename TEnum, typename std::enable_if<std::is_enum<TEnum>::value>::type* = nullptr >
 class State
 {
 public:
-	State( std::string name )
+	State( TEnum name )
 	{
 		m_Name = name;
 	}
 
 	virtual ~State() {}
 
-	inline std::string Name() const
+	inline TEnum Name() const
 	{
 		return m_Name;
 	}
@@ -28,13 +28,13 @@ public:
 private:
 	State() {}
 
-	std::string m_Name;
+	TEnum m_Name;
 };
 
 /************************************************************************/
 /* StateMachine                                                         */
 /************************************************************************/
-template <class T>
+template <class T, typename TEnum, typename std::enable_if<std::is_enum<TEnum>::value>::type* = nullptr >
 class StateMachine final
 {
 public:
@@ -48,7 +48,7 @@ public:
 
 	virtual ~StateMachine() {}
 
-	inline std::string CurrentStateName() const
+	inline TEnum CurrentStateName() const
 	{
 		if( m_pCurrentState != nullptr )
 		{
@@ -58,7 +58,7 @@ public:
 		return "";
 	}
 
-	void ChangeState( State<T>* state )
+	void ChangeState( State<T, TEnum>* state )
 	{
 		m_pPrevState = m_pCurrentState;
 
@@ -80,8 +80,8 @@ public:
 	}
 
 private:
-	State<T>* m_pPrevState;
-	State<T>* m_pCurrentState;
+	State<T, TEnum>* m_pPrevState;
+	State<T, TEnum>* m_pCurrentState;
 
 	T* m_pOwner;
 
