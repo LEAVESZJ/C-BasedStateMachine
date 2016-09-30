@@ -55,14 +55,9 @@ public:
 
 	virtual ~StateMachine() {}
 
-	inline TEnum CurrentStateName() const
+	inline TEnum CurrentState() const
 	{
-		if( m_pCurrentState != nullptr )
-		{
-			return m_pCurrentState->Name();
-		}
-
-		return nullptr;
+		return m_pCurrentState->Name();
 	}
 
 	void ChangeState( State<T, TEnum>* state )
@@ -82,7 +77,7 @@ public:
 	{
 		if( m_pCurrentState != nullptr )
 		{
-			m_pCurrentState->Update();
+			m_pCurrentState->Exec( m_pOwner );
 		}
 	}
 

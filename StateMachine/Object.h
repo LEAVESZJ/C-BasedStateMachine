@@ -24,6 +24,13 @@ public:
 
 	void Initialize();
 
+	void Update();
+
+	STATE CurrentState() const
+	{
+		return m_pStateMachine->CurrentState();
+	}
+
 private:
 
 	void ChangeState( STATE state );

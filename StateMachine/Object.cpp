@@ -26,6 +26,14 @@ void Object::Initialize()
 	this->ChangeState( STATE::Enter );
 }
 
+void Object::Update()
+{
+	if( m_pStateMachine != nullptr )
+	{
+		m_pStateMachine->Update();
+	}
+}
+
 void Object::ChangeState( STATE state )
 {
 	if( this->m_pStateMachine == nullptr ) return;
@@ -41,6 +49,7 @@ void Object::ChangeState( STATE state )
 /************************************************************************/
 void Object::ObjectStateEnter::Enter( Object* owner )
 {
+	owner->ChangeState( STATE::Exec );
 }
 
 void Object::ObjectStateEnter::Exec( Object* owner )
@@ -60,6 +69,7 @@ void Object::ObjectStateExec::Enter( Object* owner )
 
 void Object::ObjectStateExec::Exec( Object* owner )
 {
+	owner->ChangeState( STATE::Exit );
 }
 
 void Object::ObjectStateExec::Exit( Object* owner )
