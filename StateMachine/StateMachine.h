@@ -1,4 +1,5 @@
 #pragma once
+
 #include <string>
 
 template <class T>
@@ -7,14 +8,14 @@ class State
 public:
 	State( std::string name )
 	{
-		m_name = name;
+		m_Name = name;
 	}
 
 	virtual ~State() {}
 
 	inline std::string Name() const
 	{
-		return m_name;
+		return m_Name;
 	}
 
 	virtual void Enter( T* ) = 0;
@@ -24,7 +25,7 @@ public:
 private:
 	State() {}
 
-	std::string m_name;
+	std::string m_Name;
 };
 
 template <class T>
@@ -33,19 +34,19 @@ class StateMachine final
 public:
 	StateMachine( T* owner )
 	{
-		m_prevState = nullptr;
-		m_currentState = nullptr;
+		m_pPrevState = nullptr;
+		m_pCurrentState = nullptr;
 
-		m_owner = owner;
+		m_pOwner = owner;
 	}
 
 	virtual ~StateMachine() {}
 
 	inline std::string CurrentStateName() const
 	{
-		if( m_currentState != nullptr )
+		if( m_pCurrentState != nullptr )
 		{
-			return m_currentState->Name();
+			return m_pCurrentState->Name();
 		}
 
 		return "";
@@ -53,30 +54,30 @@ public:
 
 	void ChangeState( State<T>* state )
 	{
-		m_prevState = m_currentState;
+		m_pPrevState = m_pCurrentState;
 
-		if( m_prevState != nullptr )
+		if( m_pPrevState != nullptr )
 		{
-			m_prevState->Exit( m_owner );
+			m_pPrevState->Exit( m_pOwner );
 		}
 
-		m_currentState = state;
-		m_currentState->Enter( m_owner );
+		m_pCurrentState = state;
+		m_pCurrentState->Enter( m_pOwner );
 	}
 
 	void Update()
 	{
-		if( m_currentState != nullptr )
+		if( m_pCurrentState != nullptr )
 		{
-			m_currentState->Update();
+			m_pCurrentState->Update();
 		}
 	}
 
 private:
-	State<T>* m_prevState;
-	State<T>* m_currentState;
+	State<T>* m_pPrevState;
+	State<T>* m_pCurrentState;
 
-	T* m_owner;
+	T* m_pOwner;
 
 	StateMachine() {};
 };

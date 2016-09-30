@@ -8,10 +8,6 @@ class Object
 {
 	typedef typename State<Object> StateObject;
 
-private:
-	StateMachine<Object>*	  m_pStateMachine;
-	std::vector<StateObject*> m_StateVec;
-
 public:
 	enum STATE
 	{
@@ -24,6 +20,10 @@ public:
 	virtual ~Object();
 
 	void Initialize();
+
+private:
+	StateMachine<Object>*	  m_pStateMachine;
+	std::vector<StateObject*> m_StateVec;
 
 private:
 	class ObjectStateEnter final : public State<Object>
