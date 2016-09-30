@@ -4,11 +4,15 @@
 #include <vector>
 #include <iostream>
 
+/************************************************************************/
+/* Object                                                               */
+/************************************************************************/
 class Object
 {
 	typedef typename State<Object> StateObject;
 
 public:
+
 	enum STATE
 	{
 		Enter = 0,
@@ -22,10 +26,17 @@ public:
 	void Initialize();
 
 private:
+
+	void ChangeState( STATE state );
+
 	StateMachine<Object>*	  m_pStateMachine;
 	std::vector<StateObject*> m_StateVec;
 
 private:
+
+	/************************************************************************/
+	/* Object State Enter                                                   */
+	/************************************************************************/
 	class ObjectStateEnter final : public State<Object>
 	{
 		public:
@@ -39,6 +50,9 @@ private:
 			virtual void Exit( Object* owner ) override;
 	};
 
+	/************************************************************************/
+	/* Object State Exec                                                    */
+	/************************************************************************/
 	class ObjectStateExec final : public State<Object>
 	{
 		public:
@@ -52,6 +66,9 @@ private:
 			virtual void Exit( Object* owner ) override;
 	};
 
+	/************************************************************************/
+	/* Object State Exit                                                    */
+	/************************************************************************/
 	class ObjectStateExit final : public State<Object>
 	{
 		public:
