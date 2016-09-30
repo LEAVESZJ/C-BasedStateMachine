@@ -19,9 +19,9 @@ void Object::Initialize()
 {
 	m_pStateMachine = new StateMachine<Object, STATE>( this );
 
-	m_StateVec.push_back( dynamic_cast<StateObject*>( new ObjectStateEnter( STATE::Enter, "STATE::Enter" ) ) );
-	m_StateVec.push_back( dynamic_cast<StateObject*>( new ObjectStateExec(  STATE::Exec,  "STATE::Exec"  ) ) );
-	m_StateVec.push_back( dynamic_cast<StateObject*>( new ObjectStateExit(  STATE::Exit,  "STATE::Exit"  ) ) );
+	m_StateVec.push_back( new ObjectStateEnter( STATE::Enter, "STATE::Enter" ) );
+	m_StateVec.push_back( new ObjectStateExec(  STATE::Exec,  "STATE::Exec"  ) );
+	m_StateVec.push_back( new ObjectStateExit(  STATE::Exit,  "STATE::Exit"  ) );
 
 	this->ChangeState( STATE::Enter );
 }
@@ -38,10 +38,10 @@ void Object::ChangeState( STATE state )
 {
 	if( this->m_pStateMachine == nullptr ) return;
 
-	m_pStateMachine->ChangeState( m_StateVec[ state ] );
-
 	/* For Debug **/
 	std::cout << "[Current State] " + m_StateVec[ state ]->NameStr() << std::endl;
+
+	m_pStateMachine->ChangeState( m_StateVec[ state ] );
 }
 
 /************************************************************************/
