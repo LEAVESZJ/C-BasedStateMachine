@@ -12,6 +12,13 @@ Object::Object() :
 
 Object::~Object()
 {
+	for( const auto& state : m_StateVec )
+	{
+		delete state;
+	}
+
+	m_StateVec.clear();
+
 	delete m_pStateMachine;
 }
 
@@ -19,9 +26,9 @@ void Object::Initialize()
 {
 	m_pStateMachine = new StateMachine<Object, STATE>( this );
 
-	m_StateVec.push_back( new ObjectStateEnter( STATE::Enter, "STATE::Enter" ) );
-	m_StateVec.push_back( new ObjectStateExec(  STATE::Exec,  "STATE::Exec"  ) );
-	m_StateVec.push_back( new ObjectStateExit(  STATE::Exit,  "STATE::Exit"  ) );
+	m_StateVec.push_back( new ObjectStateEnter( STATE::Enter, "Object::STATE::Enter" ) );
+	m_StateVec.push_back( new ObjectStateExec(  STATE::Exec,  "Object::STATE::Exec"  ) );
+	m_StateVec.push_back( new ObjectStateExit(  STATE::Exit,  "Object::STATE::Exit"  ) );
 
 	this->ChangeState( STATE::Enter );
 }

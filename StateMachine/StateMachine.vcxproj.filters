@@ -3,9 +3,11 @@
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Object.cpp" />
+    <ClCompile Include="ObjectPlus.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StateMachine.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="ObjectPlus.h" />
   </ItemGroup>
 </Project>
