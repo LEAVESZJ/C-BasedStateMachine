@@ -148,12 +148,14 @@
   <ItemGroup>
     <ClInclude Include="Object.h" />
     <ClInclude Include="ObjectPlus.h" />
+    <ClInclude Include="StackableObject.h" />
     <ClInclude Include="StateMachine.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectPlus.cpp" />
+    <ClCompile Include="StackableObject.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
